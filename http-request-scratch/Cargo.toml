@@ -5,19 +5,19 @@ edition = "2021"
 
 [dependencies]
 hyper = { workspace = true, features = [
-    "server",       # needed for `hyper::server::conn`
-    "http1",        # for http1::Builder
-    "http2",        # for http2::Builder
+    "server",       
+    "http1",     
+    "http2",       
 ] }
 
 hyper-util = { workspace = true, features = [
-    "tokio",        # needed for TokioIo, TokioExecutor
+    "tokio",    
 ] }
 
 tokio = { workspace = true, features = [
-    "net",          # for TcpListener, TcpStream, etc.
-    "macros",       # for #[tokio::main]
-    "rt-multi-thread"  # for tokio::spawn, multi-threaded runtime
+    "net",          
+    "macros",      
+    "rt-multi-thread"  
 ] }
 
-http-body-util = { workspace = true }  # no extra features needed
+http-body-util = { workspace = true }  

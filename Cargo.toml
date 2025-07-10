@@ -2,7 +2,10 @@
 resolver = "2"
 members = [
     "async-task-queue",
-    "http-request-scratch"
+    "http-request-scratch",
+    "client-server-threads/protocol",
+    "client-server-threads/client-threads",
+    "client-server-threads/server-threads"
 ]
 
 [workspace.dependencies]

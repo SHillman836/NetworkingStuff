@@ -1,0 +1,8 @@
+[package]
+name = "server_threads"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { workspace = true, features = ["full"] }
+protocol = { path = "../protocol" }
