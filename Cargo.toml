@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = [
+    "async-task-queue",
+    "http-request-scratch"
+]
+
+[workspace.dependencies]
+async-task = "4.7.0"
+futures-lite = "2.2.0"
+once_cell = "1.19.0"
+flume = "0.11.0"
+hyper = "1.2.0"
+tokio = "1.36.0"
+http-body-util = "0.1.1"
+hyper-util = "0.1.3"

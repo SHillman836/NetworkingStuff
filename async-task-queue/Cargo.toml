@@ -1,0 +1,10 @@
+[package]
+name = "async_task_queue"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+async-task.workspace = true
+flume.workspace = true
+futures-lite.workspace = true
+once_cell.workspace = true
