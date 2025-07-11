@@ -1,0 +1,12 @@
+// Namespace
+namespace ClientServer.TcpPlusData;
+
+
+table TcpPlusData {
+    client:uint;
+    message:string;
+    repeat:uint;
+}
+
+// Root Type
+root_type TcpPlusData;
