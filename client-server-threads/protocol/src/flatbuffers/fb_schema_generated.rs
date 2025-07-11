@@ -10,14 +10,6 @@ extern crate flatbuffers;
 use self::flatbuffers::{EndianScalar, Follow};
 
 #[allow(unused_imports, dead_code)]
-pub mod client_server {
-
-  use core::mem;
-  use core::cmp::Ordering;
-
-  extern crate flatbuffers;
-  use self::flatbuffers::{EndianScalar, Follow};
-#[allow(unused_imports, dead_code)]
 pub mod tcp_plus_data {
 
   use core::mem;
@@ -229,5 +221,4 @@ pub fn finish_size_prefixed_tcp_plus_data_buffer<'a, 'b, A: flatbuffers::Allocat
   fbb.finish_size_prefixed(root, None);
 }
 }  // pub mod TcpPlusData
-}  // pub mod ClientServer
 

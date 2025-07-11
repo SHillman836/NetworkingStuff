@@ -20,7 +20,7 @@ impl TcpPlus {
         Ok(msg)
     }
 
-    // Takes in a vector of bytes
+    // Takes in a vector of bytes for the flatbuffers data
     // These bytes are the raw body, they aren't yet in protocol
     pub async fn write_message(tcp_stream: &mut TcpStream, message: &mut Vec<u8>) -> Result<(), std::io::Error> {
         let byte_len: usize = message.len();

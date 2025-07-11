@@ -1,56 +1,48 @@
-extern crate flatbuffers;
-
-use fb_schema_generated::{
+use crate::fb_schema_generated::tcp_plus_data::{
     root_as_tcp_plus_data,
-    TcpPlusData
+    TcpPlusData,
+    TcpPlusDataArgs,
 };
 use flatbuffers::FlatBufferBuilder;
+use std::io::{self, ErrorKind};
 
 
 pub struct TcpData {
-    client: u32,
-    message: String,
-    repeat: u32,
+    pub client:  u32,
+    pub message: String,
+    pub repeat:  u32,
 }
+
 
 impl TcpData {
     pub fn new(client: u32, message: &str, repeat: u32) -> Self {
-        return Self {
-            client: client,
+        Self {
+            client,
             message: message.to_string(),
-            repeat: repeat,
+            repeat,
         }
     }
 
     pub fn serialize(&self) -> Vec<u8> {
         let mut builder = FlatBufferBuilder::with_capacity(1024);
-
-        let message = builder.create_string(self.message);
-        let tcp_data = TcpPlusData::create(&mut builder, &TcpPlusDataArgs{
-            client: self.client,
-            message: message,
-            repeat: self.repeat
+        let msg_off  = builder.create_string(&self.message);
+        let tcp_off  = TcpPlusData::create(&mut builder, &TcpPlusDataArgs {
+            client:  self.client,
+            message: Some(msg_off),
+            repeat:  self.repeat,
         });
-        builder.finish(tcp_data, None);
-
-        return builder.finished_data().to_vec();
+        builder.finish(tcp_off, None);
+        builder.finished_data().to_vec()
     }
 
-    pub fn deserialize(buf: &[u8]) -> Result<Self, std::io::Error> {
-        let tcp_data = root_as_tcp_plus_data(buf)
-            .map_err(|e| { io::Error::new(
-                    ErrorKind::InvalidData,
-                    format!("FlatBuffer parse error: {}", e),
-                )
-            })
+    pub fn deserialize(buf: &[u8]) -> Result<Self, io::Error> {
+        let data = root_as_tcp_plus_data(buf)
+            .map_err(|e| io::Error::new(ErrorKind::InvalidData, e.to_string()))?;
 
         let msg_str = data
             .message()
             .ok_or_else(|| io::Error::new(ErrorKind::InvalidData, "missing message"))?;
 
-        
         Ok(TcpData::new(data.client(), msg_str, data.repeat()))
     }
 }
-
-
