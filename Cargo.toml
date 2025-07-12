@@ -4,7 +4,8 @@ members = [
     "async-task-queue",
     "http-request-scratch",
     "client-server-threads/protocol",
-    "client-server-threads/server"
+    "client-server-threads/server",
+    "client-server-threads/client",
 ]
 
 [workspace.dependencies]

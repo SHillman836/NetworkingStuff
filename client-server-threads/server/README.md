@@ -1,0 +1,3 @@
+# Server
+
+This is our TCP server for accepting connections. We use tokio as our async runtime to manage tasks. We spawn a task for each connection, use our protocol crate to read and deserialise the incoming TCP stream. We then print out the infromation contained in the incoming request, and create a response. We then serialise that response back to our protocol format and send it back over our TCP stream.

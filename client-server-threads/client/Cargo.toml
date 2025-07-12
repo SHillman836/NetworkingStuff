@@ -5,3 +5,6 @@ edition = "2021"
 
 [dependencies]
 tokio = { workspace = true, features = ["full"] }
+protocol = { path = "../protocol" }
+rand = "0.9.1"
+anyhow = "1.0"
